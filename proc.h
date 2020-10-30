@@ -12,7 +12,7 @@ struct cpu {
 
 extern struct cpu cpus[NCPU];
 extern int ncpu;
-
+#define NUM_QUEUES (int)5     // 8c60c451ba0933cf2b4c7e40967bfa38
 //PAGEBREAK: 17
 // Saved registers for kernel context switches.
 // Don't need to save all the segment registers (%cs, etc),
@@ -54,6 +54,10 @@ struct proc {
   int etime;                // End time of the process
   int rtime;                // Run time of the process
 
+  int priority;               // 8c60c451ba0933cf2b4c7e40967bfa38
+  int n_run;          
+  int cur_q;
+  int q[NUM_QUEUES];
 };
 
 // Process memory is laid out contiguously, low addresses first:

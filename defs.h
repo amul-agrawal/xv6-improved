@@ -111,7 +111,7 @@ int             kill(int);
 struct cpu*     mycpu(void);
 struct proc*    myproc();
 void            pinit(void);
-void            procdump(void);
+int             procdump(void); // 8c60c451ba0933cf2b4c7e40967bfa38
 void            scheduler(void) __attribute__((noreturn));
 void            sched(void);
 void            setproc(struct proc*);
@@ -122,6 +122,7 @@ int             waitx(int*, int*); // 8c60c451ba0933cf2b4c7e40967bfa38
 void            inc_runtime(void);  // 8c60c451ba0933cf2b4c7e40967bfa38
 void            wakeup(void*);
 void            yield(void);
+// int            procdump(void); // 
 
 // swtch.S
 void            swtch(struct context**, struct context*);

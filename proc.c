@@ -88,12 +88,17 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
-
+  p->n_run = 0;    // 8c60c451ba0933cf2b4c7e40967bfa38
+  p->priority = 0;
+  p->cur_q = 0;
+  for(int i=0;i<5;i++) {
+    p->q[i] = 0;
+  }
   // 8c60c451ba0933cf2b4c7e40967bfa38
   // Set start time to current time and run time to 0
   p->ctime = ticks;
   p->rtime = 0;
-  p->etime = 0;
+  p->etime = ticks;
 
   release(&ptable.lock);
 
@@ -130,6 +135,7 @@ void inc_runtime() {
   for (struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
     if (p->state == RUNNING) {
       p->rtime++;
+      p->etime = ticks;
     }
   }
 
@@ -408,12 +414,14 @@ scheduler(void)
       if(p->state != RUNNABLE)
         continue;
 
+
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
       c->proc = p;
       switchuvm(p);
       p->state = RUNNING;
+      p->n_run ++;
 
       swtch(&(c->scheduler), p->context);
       switchkvm();
@@ -572,7 +580,7 @@ kill(int pid)
 // Print a process listing to console.  For debugging.
 // Runs when user types ^P on console.
 // No lock to avoid wedging a stuck machine further.
-void
+int
 procdump(void)
 {
   static char *states[] = {
@@ -583,11 +591,10 @@ procdump(void)
   [RUNNING]   "run   ",
   [ZOMBIE]    "zombie"
   };
-  int i;
   struct proc *p;
   char *state;
-  uint pc[10];
-
+  // uint pc[10];
+  cprintf("PID\tPriority\tState\tr_time\tw_time\tn_run\tcur_q\tq0\tq1\tq2\tq3\tq4\n");  //  8c60c451ba0933cf2b4c7e40967bfa38
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == UNUSED)
       continue;
@@ -595,12 +602,18 @@ procdump(void)
       state = states[p->state];
     else
       state = "???";
-    cprintf("%d %s %s", p->pid, state, p->name);
-    if(p->state == SLEEPING){
-      getcallerpcs((uint*)p->context->ebp+2, pc);
-      for(i=0; i<10 && pc[i] != 0; i++)
-        cprintf(" %p", pc[i]);
+      //  8c60c451ba0933cf2b4c7e40967bfa38
+    cprintf("%d\t%d\t\t%s\t%d\t%d\t%d\t%d", p->pid,p->priority, state, p->rtime, (p->etime - p->rtime - p->ctime), p->n_run, p->cur_q);
+    for(int j=0;j<5;j++) {
+      cprintf("\t%d", p->q[j]);
     }
+    // if(p->state == SLEEPING){
+    //   getcallerpcs((uint*)p->context->ebp+2, pc);
+    //   for(i=0; i<10 && pc[i] != 0; i++)
+    //     cprintf(" %p", pc[i]);
+    // }
     cprintf("\n");
   }
+  return 0;
 }
+ 
