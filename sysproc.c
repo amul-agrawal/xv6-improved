@@ -26,6 +26,19 @@ sys_wait(void)
   return wait();
 }
 
+// 8c60c451ba0933cf2b4c7e40967bfa38
+int sys_waitx(void) {
+  int* wtime;
+  int* rtime;
+  if (argptr(0, (void*)&wtime, sizeof(int*)) < 0) {
+      return -1;
+  }
+  if (argptr(1, (void*)&rtime, sizeof(int*)) < 0) {
+    return -1;
+  }
+  return waitx(wtime, rtime);
+}
+
 int
 sys_kill(void)
 {

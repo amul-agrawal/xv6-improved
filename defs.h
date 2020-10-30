@@ -118,6 +118,8 @@ void            setproc(struct proc*);
 void            sleep(void*, struct spinlock*);
 void            userinit(void);
 int             wait(void);
+int             waitx(int*, int*); // 8c60c451ba0933cf2b4c7e40967bfa38
+void            inc_runtime(void);  // 8c60c451ba0933cf2b4c7e40967bfa38
 void            wakeup(void*);
 void            yield(void);
 

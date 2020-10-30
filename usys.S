@@ -11,6 +11,7 @@
 SYSCALL(fork)
 SYSCALL(exit)
 SYSCALL(wait)
+SYSCALL(waitx) /* 8c60c451ba0933cf2b4c7e40967bfa38 */
 SYSCALL(pipe)
 SYSCALL(read)
 SYSCALL(write)
