@@ -159,7 +159,10 @@ int set_priority(int new_priority, int pid) {
   if (new_priority < 0 || new_priority > 100) {
     return -1;
   }
+  if(pid < 0 )
+    return -1;
 
+  // cprintf("pid: %d\n", pid);
   int old_priority = 0;
   
   acquire(&ptable.lock);
@@ -168,7 +171,7 @@ int set_priority(int new_priority, int pid) {
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
     if(p->pid != pid)
       continue;
-
+    // cprintf("pid: %d\n", pid);
     old_priority = p->priority;
     p->priority = new_priority;
     if (new_priority != old_priority) {

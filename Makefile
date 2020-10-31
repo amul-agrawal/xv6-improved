@@ -220,6 +220,7 @@ UPROGS=\
 	_zombie\
 	_time\
 	_ps\
+	_setPriority\
 	# 8c60c451ba0933cf2b4c7e40967bfa38
 
 fs.img: mkfs README $(UPROGS)
@@ -295,6 +296,7 @@ EXTRA=\
 	.gdbinit.tmpl gdbutil\
 	time.c\
 	ps.c\
+	setPriority.c\
 	# 8c60c451ba0933cf2b4c7e40967bfa38
 dist:
 	rm -rf dist
