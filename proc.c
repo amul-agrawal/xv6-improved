@@ -89,11 +89,23 @@ found:
   p->state = EMBRYO;
   p->pid = nextpid++;
   p->n_run = 0;    // 8c60c451ba0933cf2b4c7e40967bfa38
-  p->priority = 0;
-  p->cur_q = 0;
-  for(int i=0;i<5;i++) {
-    p->q[i] = 0;
-  }
+  p->n_run_priority = 0;
+  #if SCHEDULER == SCHED_PBS
+      p->priority = 60;
+  #else
+      p->priority = -1;
+  #endif 
+  #if SCHEDULER == SCHED_MLFQ
+      p->cur_q = -1;
+      for(int i=0;i<5;i++) {
+        p->q[i] = 0;
+      }
+  #else
+    p->cur_q = -1;
+    for(int i=0;i<5;i++) {
+      p->q[i] = -1; 
+    }
+  #endif
   // 8c60c451ba0933cf2b4c7e40967bfa38
   // Set start time to current time and run time to 0
   p->ctime = ticks;
@@ -140,6 +152,38 @@ void inc_runtime() {
   }
 
   release(&ptable.lock);
+}
+
+// 8c60c451ba0933cf2b4c7e40967bfa38
+int set_priority(int new_priority, int pid) {
+  if (new_priority < 0 || new_priority > 100) {
+    return -1;
+  }
+
+  int old_priority = 0;
+  
+  acquire(&ptable.lock);
+
+  struct proc *p;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+    if(p->pid != pid)
+      continue;
+
+    old_priority = p->priority;
+    p->priority = new_priority;
+    if (new_priority != old_priority) {
+      p->n_run_priority = 0;
+    }
+
+  }
+
+  release(&ptable.lock);
+
+  if (new_priority != old_priority) {
+    yield();
+  }
+
+  return old_priority;
 }
 
 //PAGEBREAK: 32
@@ -389,51 +433,7 @@ waitx(int* wtime, int* rtime)
   }
 }
 
-//PAGEBREAK: 42
-// Per-CPU process scheduler.
-// Each CPU calls scheduler() after setting itself up.
-// Scheduler never returns.  It loops, doing:
-//  - choose a process to run
-//  - swtch to start running that process
-//  - eventually that process transfers control
-//      via swtch back to the scheduler.
-void
-scheduler(void)
-{
-  struct proc *p;
-  struct cpu *c = mycpu();
-  c->proc = 0;
-  
-  for(;;){
-    // Enable interrupts on this processor.
-    sti();
 
-    // Loop over process table looking for process to run.
-    acquire(&ptable.lock);
-    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-      if(p->state != RUNNABLE)
-        continue;
-
-
-      // Switch to chosen process.  It is the process's job
-      // to release ptable.lock and then reacquire it
-      // before jumping back to us.
-      c->proc = p;
-      switchuvm(p);
-      p->state = RUNNING;
-      p->n_run ++;
-
-      swtch(&(c->scheduler), p->context);
-      switchkvm();
-
-      // Process is done running for now.
-      // It should have changed its p->state before coming back.
-      c->proc = 0;
-    }
-    release(&ptable.lock);
-
-  }
-}
 
 // Enter scheduler.  Must hold only ptable.lock
 // and have changed proc->state. Saves and restores

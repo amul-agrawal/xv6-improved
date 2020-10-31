@@ -30,4 +30,5 @@ SYSCALL(getpid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
+SYSCALL(set_priority) /* 8c60c451ba0933cf2b4c7e40967bfa38 */
 SYSCALL(procdump) // 8c60c451ba0933cf2b4c7e40967bfa38

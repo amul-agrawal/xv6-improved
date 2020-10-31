@@ -21,5 +21,5 @@
 #define SYS_mkdir  20
 #define SYS_close  21
 #define SYS_waitx  22  // 8c60c451ba0933cf2b4c7e40967bfa38
-#define SYS_waitx  22  // 8c60c451ba0933cf2b4c7e40967bfa38
 #define SYS_procdump  23  // 8c60c451ba0933cf2b4c7e40967bfa38
+#define SYS_set_priority 24 // 8c60c451ba0933cf2b4c7e40967bfa38

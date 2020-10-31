@@ -105,6 +105,7 @@ extern int sys_waitx(void);  // 8c60c451ba0933cf2b4c7e40967bfa38
 extern int sys_write(void);
 extern int sys_uptime(void);
 extern int sys_procdump(void); // 8c60c451ba0933cf2b4c7e40967bfa38
+extern int sys_set_priority(void); // 8c60c451ba0933cf2b4c7e40967bfa38
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -130,6 +131,7 @@ static int (*syscalls[])(void) = {
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
 [SYS_procdump] sys_procdump, // 8c60c451ba0933cf2b4c7e40967bfa38
+[SYS_set_priority] sys_set_priority, // 8c60c451ba0933cf2b4c7e40967bfa38
 };
 
 void

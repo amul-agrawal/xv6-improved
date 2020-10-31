@@ -32,7 +32,7 @@ idtinit(void)
   lidt(idt, sizeof(idt));
 }
 
-//PAGEBREAK: 41
+// //PAGEBREAK: 41
 void
 trap(struct trapframe *tf)
 {
@@ -100,14 +100,35 @@ trap(struct trapframe *tf)
   // until it gets to the regular system call return.)
   if(myproc() && myproc()->killed && (tf->cs&3) == DPL_USER)
     exit();
-
+#if (SCHEDULER == SCHED_RR || SCHEDULER == SCHED_PBS) 
+  // 8c60c451ba0933cf2b4c7e40967bfa38
   // Force process to give up CPU on clock tick.
   // If interrupts were on while locks held, would need to check nlock.
-  if(myproc() && myproc()->state == RUNNING &&
-     tf->trapno == T_IRQ0+IRQ_TIMER)
+  
+  if(myproc() && myproc()->state == RUNNING && tf->trapno == T_IRQ0+IRQ_TIMER)
     yield();
 
   // Check if the process has been killed since we yielded
   if(myproc() && myproc()->killed && (tf->cs&3) == DPL_USER)
     exit();
+
+#elif (SCHEDULER == SCHED_MLFQ)
+  // 8c60c451ba0933cf2b4c7e40967bfa38
+  // Force process to give up CPU on clock tick.
+  // If interrupts were on while locks held, would need to check nlock.
+  if (myproc() && myproc()->state == RUNNING && tf->trapno == T_IRQ0 + IRQ_TIMER) {
+    inc_pinfo_ticks();
+    if (myproc()->cur_timeslices >= TIMESLICE(myproc()->queue)) {
+      punisher();
+      yield();
+    } else {
+      inc_timeslice();
+      return;
+    }
+  }
+
+  // Check if the process has been killed since we yielded
+  if (myproc() && myproc()->killed && (tf->cs & 3) == DPL_USER)
+    exit();
+#endif
 }

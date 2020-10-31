@@ -122,6 +122,7 @@ int             waitx(int*, int*); // 8c60c451ba0933cf2b4c7e40967bfa38
 void            inc_runtime(void);  // 8c60c451ba0933cf2b4c7e40967bfa38
 void            wakeup(void*);
 void            yield(void);
+int             set_priority(int,int); // 8c60c451ba0933cf2b4c7e40967bfa38
 // int            procdump(void); // 
 
 // swtch.S

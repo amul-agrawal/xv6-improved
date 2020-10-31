@@ -37,38 +37,50 @@ extern void trapret(void);
 void
 scheduler(void)
 {
-    // printf(2, "using rr\n");
+    // printf(2, "Using FCFS\n");
   struct proc *p;
   struct cpu *c = mycpu();
   c->proc = 0;
-  
-  for(;;){
-    // Enable interrupts on this processor.
-    sti();
+  while (1) {
+      // Enable interrupts on this processor - yielding disabled for FCFS
+      sti();
+      // Loop over process table looking for the process with earliest creation time to run
+      int min_time = ticks + 2; 
+      struct proc* selected_proc = 0;
 
-    // Loop over process table looking for process to run.
-    acquire(&ptable.lock);
-    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-      if(p->state != RUNNABLE)
+      acquire(&ptable.lock);
+      for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->state != RUNNABLE) {
+          continue;
+        }
+
+        if (p->ctime < min_time) {
+          min_time = p->ctime;
+          selected_proc = p;
+        }
+      }
+
+      if (selected_proc == 0) {
+        release(&ptable.lock);
         continue;
-
+      }
+      
 
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
-      c->proc = p;
-      switchuvm(p);
-      p->state = RUNNING;
-      p->n_run ++;
+      c->proc = selected_proc;
+      selected_proc->n_run++;
+      switchuvm(selected_proc);
+      selected_proc->state = RUNNING;
 
-      swtch(&(c->scheduler), p->context);
+      swtch(&(c->scheduler), selected_proc->context);
       switchkvm();
 
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       c->proc = 0;
-    }
-    release(&ptable.lock);
 
-  }
+      release(&ptable.lock);
+    }
 }

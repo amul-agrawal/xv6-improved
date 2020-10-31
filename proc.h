@@ -10,6 +10,12 @@ struct cpu {
   struct proc *proc;           // The process running on this cpu or null
 };
 
+// 8c60c451ba0933cf2b4c7e40967bfa38
+#define SCHED_RR 0
+#define SCHED_FCFS 1
+#define SCHED_PBS 2
+#define SCHED_MLFQ 3
+
 extern struct cpu cpus[NCPU];
 extern int ncpu;
 #define NUM_QUEUES (int)5     // 8c60c451ba0933cf2b4c7e40967bfa38
@@ -58,6 +64,8 @@ struct proc {
   int n_run;          
   int cur_q;
   int q[NUM_QUEUES];
+
+  int n_run_priority;         // number of times it ran on a particular priority
 };
 
 // Process memory is laid out contiguously, low addresses first:
