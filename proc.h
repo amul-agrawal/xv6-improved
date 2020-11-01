@@ -62,7 +62,6 @@ struct proc {
 
   int priority;               // 8c60c451ba0933cf2b4c7e40967bfa38
   int n_run;          
-  int cur_q;
   int q[NUM_QUEUES];
 
   int n_run_priority;         // number of times it ran on a particular priority

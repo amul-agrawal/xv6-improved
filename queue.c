@@ -48,7 +48,7 @@ struct node* push(struct node* head, struct proc* p) {
 
     if(!found_node) return 0;
     
-    initialize_found_node(head, p);
+    initialize_found_node(found_node, p);
 
     // this is the head.
     if (head == 0) {

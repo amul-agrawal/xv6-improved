@@ -28,8 +28,8 @@ extern void trapret(void);
 void
 scheduler(void)
 {
-   cprintf("here\n");
-   exit();
+  //  cprintf("here\n");
+  //  exit();
   struct proc *p;
   struct cpu *c = mycpu();
   c->proc = 0;
@@ -39,7 +39,7 @@ scheduler(void)
 
     acquire(&ptable.lock);
 
-    cprintf("here\n");
+    // cprintf("here\n");
     
     // Age the processes
     for (int i = 1; i < NUM_QUEUES; i++) {
