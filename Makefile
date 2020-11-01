@@ -27,6 +27,7 @@ OBJS = \
 	uart.o\
 	vectors.o\
 	vm.o\
+	queue.o\
 # 8c60c451ba0933cf2b4c7e40967bfa38
 ifndef SCHEDULER
 OBJS += scheduler_rr.o
@@ -221,6 +222,7 @@ UPROGS=\
 	_time\
 	_ps\
 	_setPriority\
+	_benchmark\
 	# 8c60c451ba0933cf2b4c7e40967bfa38
 
 fs.img: mkfs README $(UPROGS)
@@ -258,7 +260,7 @@ QEMUGDB = $(shell if $(QEMU) -help | grep -q '^-gdb'; \
 	then echo "-gdb tcp::$(GDBPORT)"; \
 	else echo "-s -p $(GDBPORT)"; fi)
 ifndef CPUS
-CPUS := 2
+CPUS := 1
 endif
 QEMUOPTS = -drive file=fs.img,index=1,media=disk,format=raw -drive file=xv6.img,index=0,media=disk,format=raw -smp $(CPUS) -m 512 $(QEMUEXTRA)
 
@@ -297,6 +299,7 @@ EXTRA=\
 	time.c\
 	ps.c\
 	setPriority.c\
+	benchmark.c\
 	# 8c60c451ba0933cf2b4c7e40967bfa38
 dist:
 	rm -rf dist

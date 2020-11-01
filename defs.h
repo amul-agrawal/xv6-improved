@@ -123,10 +123,21 @@ void            inc_runtime(void);  // 8c60c451ba0933cf2b4c7e40967bfa38
 void            wakeup(void*);
 void            yield(void);
 int             set_priority(int,int); // 8c60c451ba0933cf2b4c7e40967bfa38
+void            set_cpu_heavy(); // 8c60c451ba0933cf2b4c7e40967bfa38
+void            inc_q_ticks(); // 8c60c451ba0933cf2b4c7e40967bfa38
+void            inc_timeslice(); //8c60c451ba0933cf2b4c7e40967bfa38
 // int            procdump(void); // 
 
 // swtch.S
 void            swtch(struct context**, struct context*);
+
+// queue.c 
+struct node* find_node();
+int size(struct node* head);
+void initialize_found_node(struct node* this, struct proc* p);
+struct node* push(struct node* head, struct proc* p);
+struct node* pop(struct node* head);
+void moveup(struct node** down, struct node** up, int threshold);
 
 // spinlock.c
 void            acquire(struct spinlock*);

@@ -66,10 +66,29 @@ struct proc {
   int q[NUM_QUEUES];
 
   int n_run_priority;         // number of times it ran on a particular priority
+
+  int time_slices;
+  int cur_timeslices;
+  int is_cpu_heavy;                 // process used its timespace, and now we need to move it down.
+  int queue;                  // queue on which process is waiting
+  int age_time;               // entry time in a queue
 };
+
+struct node {
+    struct node *next;
+    struct proc *p;
+    int use;
+};
+struct node avl_nodes[NPROC];
+struct node *queues[NUM_QUEUES];  // lower indices are higher priority
+
+#define TIMESLICE(t) (1<<t)
+// int TIMESLICE[] = {1, 2, 4, 8, 16};
+#define AGE_LIMIT 30
 
 // Process memory is laid out contiguously, low addresses first:
 //   text
 //   original data and bss
 //   fixed-size stack
 //   expandable heap
+

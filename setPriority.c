@@ -33,7 +33,6 @@ int main(int argc, char** argv) {
         exit();
     }
 
-    // printf(2, "priority: %s pid: %s\n", argv[1], argv[2]);
 
     int priority = myAtoi(((char *)argv[1]));
     int pid = myAtoi((char *)argv[2]);
@@ -42,9 +41,7 @@ int main(int argc, char** argv) {
         printf(2, "Your are rspble for your mistakes, don't blame devs.\n");
         exit();
     }
-    
-    // printf(2, "priority: %d pid: %d\n", priority, pid);
-    
+
     if(set_priority(priority, pid) < 0) {
         printf(2, "set_priority() error.\n");
     } 

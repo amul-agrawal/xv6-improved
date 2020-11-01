@@ -117,11 +117,12 @@ trap(struct trapframe *tf)
   // Force process to give up CPU on clock tick.
   // If interrupts were on while locks held, would need to check nlock.
   if (myproc() && myproc()->state == RUNNING && tf->trapno == T_IRQ0 + IRQ_TIMER) {
-    inc_pinfo_ticks();
     if (myproc()->cur_timeslices >= TIMESLICE(myproc()->queue)) {
-      punisher();
+      inc_q_ticks();
+      set_cpu_heavy();
       yield();
     } else {
+      inc_q_ticks();
       inc_timeslice();
       return;
     }
