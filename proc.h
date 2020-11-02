@@ -71,6 +71,7 @@ struct proc {
   int is_cpu_heavy;                 // process used its timespace, and now we need to move it down.
   int queue;                  // queue on which process is waiting
   int age_time;               // entry time in a queue
+  int wtime;
 };
 
 struct node {
@@ -83,7 +84,7 @@ struct node *queues[NUM_QUEUES];  // lower indices are higher priority
 
 #define TIMESLICE(t) (1<<t)
 // int TIMESLICE[] = {1, 2, 4, 8, 16};
-#define AGE_LIMIT 30
+#define AGE_LIMIT 25
 
 // Process memory is laid out contiguously, low addresses first:
 //   text

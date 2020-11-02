@@ -26,7 +26,7 @@ sys_wait(void)
   return wait();
 }
 
-// 8c60c451ba0933cf2b4c7e40967bfa38
+
 int sys_waitx(void) {
   int* wtime;
   int* rtime;
@@ -39,7 +39,7 @@ int sys_waitx(void) {
   return waitx(wtime, rtime);
 }
 
-// 8c60c451ba0933cf2b4c7e40967bfa38
+
 int sys_set_priority(void) {
   int new_priority;
   int pid;

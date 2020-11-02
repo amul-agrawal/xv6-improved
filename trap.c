@@ -51,7 +51,8 @@ trap(struct trapframe *tf)
     if(cpuid() == 0){
       acquire(&tickslock);
       ticks++;
-      inc_runtime();
+      inc_wtime();
+      inc_rtime();
       wakeup(&ticks);
       release(&tickslock);
     }
@@ -101,7 +102,7 @@ trap(struct trapframe *tf)
   if(myproc() && myproc()->killed && (tf->cs&3) == DPL_USER)
     exit();
 #if (SCHEDULER == SCHED_RR || SCHEDULER == SCHED_PBS) 
-  // 8c60c451ba0933cf2b4c7e40967bfa38
+  
   // Force process to give up CPU on clock tick.
   // If interrupts were on while locks held, would need to check nlock.
   
@@ -113,17 +114,21 @@ trap(struct trapframe *tf)
     exit();
 
 #elif (SCHEDULER == SCHED_MLFQ)
-  // 8c60c451ba0933cf2b4c7e40967bfa38
+  
   // Force process to give up CPU on clock tick.
   // If interrupts were on while locks held, would need to check nlock.
-  if (myproc() && myproc()->state == RUNNING && tf->trapno == T_IRQ0 + IRQ_TIMER) {
+  if (tf->trapno == T_IRQ0 + IRQ_TIMER  && myproc() && myproc()->state == RUNNING) {
+
+    // cprintf("pid: %d queue: %d timeslices: %d \n", myproc()->pid, myproc()->queue, myproc()->cur_timeslices);
+
+
     if (myproc()->cur_timeslices >= TIMESLICE(myproc()->queue)) {
-      inc_q_ticks();
-      set_cpu_heavy();
-      yield();
+      inc_q_ticks(); // incrementing q[myproc()->queue]
+      set_cpu_heavy(); // the process should now go down.
+      yield();          
     } else {
       inc_q_ticks();
-      inc_timeslice();
+      inc_timeslice();  // incrementing cur_timeslice
       return;
     }
   }

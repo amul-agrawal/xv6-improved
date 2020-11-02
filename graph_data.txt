@@ -1,0 +1,307 @@
+allocproc() pid: 3 
+MLFQ: process: 3 demoted to queue: 1 at ticks: 1080
+allocproc() pid: 4 
+MLFQ: process: 4 demoted to queue: 1 at ticks: 1081
+allocproc() pid: 5 
+MLFQ: process: 4 demoted to queue: 2 at ticks: 1083
+allocproc() pid: 6 
+allocproc() pid: 7 
+MLFQ: process: 7 demoted to queue: 1 at ticks: 1084
+allocproc() pid: 8 
+MLFQ: process: 8 demoted to queue: 1 at ticks: 1085
+MLFQ: process: 7 demoted to queue: 2 at ticks: 1087
+allocproc() pid: 9 
+MLFQ: process: 8 demoted to queue: 2 at ticks: 1089
+allocproc() pid: 10 
+allocproc() pid: 11 
+MLFQ: process: 11 demoted to queue: 1 at ticks: 1091
+allocproc() pid: 12 
+MLFQ: process: 12 demoted to queue: 1 at ticks: 1092
+MLFQ: process: 11 demoted to queue: 2 at ticks: 1094
+allocproc() pid: 13 
+MLFQ: process: 12 demoted to queue: 2 at ticks: 1096
+MLFQ: process: 4 demoted to queue: 3 at ticks: 1100
+MLFQ: process: 7 demoted to queue: 3 at ticks: 1104
+MLFQ: process: 8 demoted to queue: 3 at ticks: 1108
+MLFQ: process: 11 demoted to queue: 3 at ticks: 1112
+MLFQ: process: 12 demoted to queue: 3 at ticks: 1116
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1124
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1132
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1140
+MLFQ: process: 11 promoted to queue: 2 at ticks: 1140
+MLFQ: process: 11 demoted to queue: 3 at ticks: 1144
+MLFQ: process: 12 promoted to queue: 2 at ticks: 1144
+MLFQ: process: 12 demoted to queue: 3 at ticks: 1148
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1156
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1156
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1164
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1164
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1172
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1172
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1180
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1188
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1188
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1196
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1196
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1204
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1204
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1212
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1212
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1220
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1220
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1228
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1228
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1236
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1236
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1244
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1244
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1252
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1252
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1260
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1260
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1268
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1268
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1276
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1276
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1284
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1284
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1292
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1292
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1300
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1300
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1308
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1308
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1316
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1316
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1324
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1324
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1332
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1332
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1340
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1340
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1348
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1348
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1356
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1356
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1364
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1364
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1372
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1372
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1380
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1380
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1388
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1388
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1396
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1396
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1404
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1404
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1412
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1412
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1420
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1420
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1428
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1428
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1436
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1436
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1444
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1444
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1452
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1452
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1460
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1460
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1468
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1468
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1476
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1476
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1484
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1484
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1492
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1492
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1500
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1500
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1508
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1508
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1516
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1516
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1524
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1524
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1532
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1532
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1540
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1540
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1548
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1548
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1556
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1556
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1564
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1564
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1572
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1572
+MLFQ: process: 7 demoted to queue: 4 at ticks: 1580
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1580
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1588
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1588
+MLFQ: process: 6 demoted to queue: 1 at ticks: 1589
+MLFQ: process: 6 demoted to queue: 2 at ticks: 1591
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1591
+MLFQ: process: 10 demoted to queue: 1 at ticks: 1592
+MLFQ: process: 10 demoted to queue: 2 at ticks: 1594
+MLFQ: process: 6 demoted to queue: 3 at ticks: 1598
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1598
+MLFQ: process: 10 demoted to queue: 3 at ticks: 1602
+MLFQ: process: 11 demoted to queue: 4 at ticks: 1610
+MLFQ: process: 7 promoted to queue: 3 at ticks: 1610
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1618
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1618
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1626
+MLFQ: process: 4 promoted to queue: 2 at ticks: 1626
+MLFQ: process: 4 demoted to queue: 3 at ticks: 1630
+MLFQ: process: 10 promoted to queue: 2 at ticks: 1630
+MLFQ: process: 10 demoted to queue: 3 at ticks: 1634
+MLFQ: process: 11 promoted to queue: 3 at ticks: 1641
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1649
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1649
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1657
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1657
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1665
+MLFQ: process: 7 promoted to queue: 2 at ticks: 1669
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1677
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1677
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1685
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1685
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1693
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1693
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1701
+MLFQ: process: 7 promoted to queue: 1 at ticks: 1701
+MLFQ: process: 11 promoted to queue: 2 at ticks: 1701
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1709
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1709
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1717
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1717
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1725
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1725
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1733
+MLFQ: process: 7 promoted to queue: 0 at ticks: 1733
+MLFQ: process: 11 promoted to queue: 1 at ticks: 1733
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1733
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1741
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1741
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1749
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1749
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1757
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1757
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1765
+MLFQ: process: 11 promoted to queue: 0 at ticks: 1765
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1765
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1773
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1773
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1781
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1781
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1789
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1789
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1797
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1797
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1805
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1805
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1813
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1813
+Benchmark: 1 Exited, Category : 1, Total : 45
+exiting pid: 5 
+BeMLFQ: process: 9 demoted to queue: 1 at ticks: 1814
+Benchmark: 9 Exited, Category : 1, Total : 45
+exiting pid: 13 
+nchmark: 5 Exited, Category : 1, Total : 45
+exiting pid: 9 
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1815
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1823
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1823
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1831
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1831
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1839
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1839
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1847
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1855
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1855
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1863
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1863
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1871
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1871
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1879
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1879
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1887
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1887
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1895
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1895
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1903
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1903
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1911
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1911
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1919
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1919
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1927
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1927
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1935
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1935
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1943
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1943
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1951
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1951
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1959
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1959
+MLFQ: process: 6 demoted to queue: 4 at ticks: 1967
+MLFQ: process: 8 promoted to queue: 3 at ticks: 1967
+MLFQ: process: 8 demoted to queue: 4 at ticks: 1975
+MLFQ: process: 4 promoted to queue: 3 at ticks: 1975
+MLFQ: process: 4 demoted to queue: 4 at ticks: 1983
+MLFQ: process: 10 promoted to queue: 3 at ticks: 1983
+MLFQ: process: 10 demoted to queue: 4 at ticks: 1991
+MLFQ: process: 12 promoted to queue: 3 at ticks: 1991
+MLFQ: process: 12 demoted to queue: 4 at ticks: 1999
+MLFQ: process: 6 promoted to queue: 3 at ticks: 1999
+MLFQ: process: 6 demoted to queue: 4 at ticks: 2007
+MLFQ: process: 8 promoted to queue: 3 at ticks: 2007
+MLFQ: process: 8 demoted to queue: 4 at ticks: 2015
+MLFQ: process: 4 promoted to queue: 3 at ticks: 2015
+MLFQ: process: 4 demoted to queue: 4 at ticks: 2023
+MLFQ: process: 10 promoted to queue: 3 at ticks: 2023
+MLFQ: process: 10 demoted to queue: 4 at ticks: 2031
+MLFQ: process: 12 promoted to queue: 3 at ticks: 2031
+MLFQ: process: 12 demoted to queue: 4 at ticks: 2039
+MLFQ: process: 6 promoted to queue: 3 at ticks: 2039
+MLFQ: process: 6 demoted to queue: 4 at ticks: 2047
+MLFQ: process: 8 promoted to queue: 3 at ticks: 2047
+MLFQ: process: 8 demoted to queue: 4 at ticks: 2055
+MLFQ: process: 4 promoted to queue: 3 at ticks: 2055
+MLFQ: process: 4 demoted to queue: 4 at ticks: 2063
+MLFQ: process: 10 promoted to queue: 3 at ticks: 2063
+MLFQ: process: 10 demoted to queue: 4 at ticks: 2071
+MLFQ: process: 12 promoted to queue: 3 at ticks: 2071
+MLFQ: process: 12 demoted to queue: 4 at ticks: 2079
+MLFQ: process: 6 promoted to queue: 3 at ticks: 2079
+Benchmark: 2 ExiteMLFQ: process: 6 demoted to queue: 4 at ticks: 2087
+MLFQ: process: 8 promoted to queue: 3 at ticks: 2087
+MLFQ: process: 8 demoted to queue: 4 at ticks: 2095
+MLFQ: process: 4 promoted to queue: 3 at ticks: 2095
+MLFQ: process: 4 demoted to queue: 4 at ticks: 2103
+MLFQ: process: 10 promoted to queue: 3 at ticks: 2103
+Benchmark: 6 Exited, Category : 2, Total : 142331274
+exiting pid: 10 
+MLFQ: process: 12 promoted to queue: 3 at ticks: 2106
+MLFQ: process: 12 demoted to queue: 4 at ticks: 2114
+MLFQ: process: 6 promoted to queue: 3 at ticks: 2114
+d, Category : 2, Total : 142331274
+exiting pid: 6 
+MLFQ: process: 4 promoted to queue: 3 at ticks: 2130
+MLFQ: process: 4 demoted to queue: 4 at ticks: 2138
+Benchmark: 8 Exited, Category : 0, Total : -1243309312
+exiting pid: 12 
+Benchmark: 3 Exited, MLFQ: process: 7 demoted to queue: 1 at ticks: 2153
+Category : 3, Total : 142331274
+exiting pid: 7 
+Benchmark: 4 Exited, Category : 0, Total : -1243309312
+exiting pid: 8 
+Benchmark: 0 Exited, Category : 0, Total : -1243309312
+exiting pid: 4 
+Benchmark: 7 Exited, Category : 3, Total : 142331274
+exiting pid: 11 
+exiting pid: 3

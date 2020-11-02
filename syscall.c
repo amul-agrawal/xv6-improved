@@ -101,17 +101,17 @@ extern int sys_sbrk(void);
 extern int sys_sleep(void);
 extern int sys_unlink(void);
 extern int sys_wait(void);
-extern int sys_waitx(void);  // 8c60c451ba0933cf2b4c7e40967bfa38
+extern int sys_waitx(void);  
 extern int sys_write(void);
 extern int sys_uptime(void);
-extern int sys_procdump(void); // 8c60c451ba0933cf2b4c7e40967bfa38
-extern int sys_set_priority(void); // 8c60c451ba0933cf2b4c7e40967bfa38
+extern int sys_procdump(void); 
+extern int sys_set_priority(void); 
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
 [SYS_wait]    sys_wait,
-[SYS_waitx]    sys_waitx,  // 8c60c451ba0933cf2b4c7e40967bfa38
+[SYS_waitx]    sys_waitx,  
 [SYS_pipe]    sys_pipe,
 [SYS_read]    sys_read,
 [SYS_kill]    sys_kill,
@@ -130,8 +130,8 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_procdump] sys_procdump, // 8c60c451ba0933cf2b4c7e40967bfa38
-[SYS_set_priority] sys_set_priority, // 8c60c451ba0933cf2b4c7e40967bfa38
+[SYS_procdump] sys_procdump, 
+[SYS_set_priority] sys_set_priority, 
 };
 
 void

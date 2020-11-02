@@ -28,7 +28,7 @@ OBJS = \
 	vectors.o\
 	vm.o\
 	queue.o\
-# 8c60c451ba0933cf2b4c7e40967bfa38
+# 
 ifndef SCHEDULER
 OBJS += scheduler_rr.o
 endif
@@ -223,7 +223,7 @@ UPROGS=\
 	_ps\
 	_setPriority\
 	_benchmark\
-	# 8c60c451ba0933cf2b4c7e40967bfa38
+	# 
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
@@ -300,7 +300,7 @@ EXTRA=\
 	ps.c\
 	setPriority.c\
 	benchmark.c\
-	# 8c60c451ba0933cf2b4c7e40967bfa38
+	# 
 dist:
 	rm -rf dist
 	mkdir dist

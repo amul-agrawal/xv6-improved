@@ -28,7 +28,7 @@ pinit(void)
     acquire(&ptable.lock);
     for (int i = 0; i < NUM_QUEUES; i++) {
       // No need to lock right now, because the scheduler and all aren't even running
-      // 8c60c451ba0933cf2b4c7e40967bfa38
+      // 
       queues[i] = 0;
     }
     for (int i = 0; i < NPROC; i++) {
@@ -98,14 +98,18 @@ allocproc(void)
   return 0;
 
 found:
+
   p->state = EMBRYO;
+  // cprintf("nextpid: %d \n", nextpid);
   p->pid = nextpid++;
-  p->n_run = 0;    // 8c60c451ba0933cf2b4c7e40967bfa38
+  // cprintf("allocproc() pid: %d \n", p->pid);
+  p->n_run = 0;    // 
   p->n_run_priority = 0;
   p->is_cpu_heavy = 0;
   p->age_time = ticks;
   p->cur_timeslices = 0;
   p->time_slices = 0;
+  p->wtime = 0;
   #if SCHEDULER == SCHED_PBS
       p->priority = 60;
   #else
@@ -122,7 +126,7 @@ found:
       p->q[i] = -1; 
     }
   #endif
-  // 8c60c451ba0933cf2b4c7e40967bfa38
+  // 
   // Set start time to current time and run time to 0
   p->ctime = ticks;
   p->rtime = 0;
@@ -154,16 +158,17 @@ found:
   return p;
 }
 
-// 8c60c451ba0933cf2b4c7e40967bfa38
+// 
 // This function is called with tickslock acquired after every CPU cycle
 // Loops through the process table and increments the run time of every running process.
-void inc_runtime() {
+void inc_rtime() {
   acquire(&ptable.lock);
 
   for (struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
     if (p->state == RUNNING) {
       p->rtime++;
       p->etime = ticks;
+      p->wtime = 0;
     }
   }
 
@@ -188,8 +193,19 @@ void inc_timeslice() {
     release(&ptable.lock);
 }
 
+void inc_wtime() {
+  acquire(&ptable.lock);
+  struct proc* p;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+    if(p->state == RUNNABLE) {
+      p->wtime++;
+    }
+  }
+  release(&ptable.lock);
+}
 
-// 8c60c451ba0933cf2b4c7e40967bfa38
+
+// 
 int set_priority(int new_priority, int pid) {
   if (new_priority < 0 || new_priority > 100) {
     return -1;
@@ -260,7 +276,7 @@ userinit(void)
   p->state = RUNNABLE;
 
   #if SCHEDULER == SCHED_MLFQ
-  queues[0] = push(queues[0], p); // 8c60c451ba0933cf2b4c7e40967bfa38
+  queues[0] = push(queues[0], p); // 
   #endif
 
   release(&ptable.lock);
@@ -331,7 +347,7 @@ fork(void)
 
   #if SCHEDULER == SCHED_MLFQ
   // cprintf(" In fork() pid: %d\n", np->pid);
-  queues[0] = push(queues[0], np); // 8c60c451ba0933cf2b4c7e40967bfa38
+  queues[0] = push(queues[0], np); // 
   // cprintf(" Out fork() pid: %d\n", np->pid);
   #endif
 
@@ -349,11 +365,11 @@ exit(void)
   struct proc *curproc = myproc();
   struct proc *p;
   int fd;
-
+  // cprintf("exiting pid: %d \n", curproc->pid);
   if(curproc == initproc)
     panic("init exiting");
 
-  curproc->etime = ticks;          // 8c60c451ba0933cf2b4c7e40967bfa38
+  curproc->etime = ticks;          // 
 
   // Close all open files.
   for(fd = 0; fd < NOFILE; fd++){
@@ -432,7 +448,7 @@ wait(void)
   }
 }
 
-// 8c60c451ba0933cf2b4c7e40967bfa38
+// 
 // Wait for a child process to exit and return its pid.
 // Return -1 if this process has no children.
 // Also populate the wait time and run time of the child process.
@@ -575,13 +591,13 @@ sched(void)
     panic("sched running");
   if(readeflags()&FL_IF)
     panic("sched interruptible");
-  #if SCHEDULER == SCHED_MLFQ 
-  // cprintf("in sched pid: %d \n", myproc()->pid);
-  if(myproc()->state == RUNNABLE) {
-    queues[myproc()->queue] = push(queues[myproc()->queue], myproc());
-  }
-  // cprintf("out sched pid: %d \n", myproc()->pid);
-  #endif
+  // #if SCHEDULER == SCHED_MLFQ 
+  // // cprintf("in sched pid: %d \n", myproc()->pid);
+  // if(myproc()->state == RUNNABLE) {
+  //   queues[myproc()->queue] = push(queues[myproc()->queue], myproc());
+  // }
+  // // cprintf("out sched pid: %d \n", myproc()->pid);
+  // #endif
   intena = mycpu()->intena;
   swtch(&p->context, mycpu()->scheduler);
   mycpu()->intena = intena;
@@ -669,7 +685,7 @@ wakeup1(void *chan)
     if(p->state == SLEEPING && p->chan == chan) {
       p->state = RUNNABLE;
       #if SCHEDULER == SCHED_MLFQ 
-            // 8c60c451ba0933cf2b4c7e40967bfa38
+            // 
             queues[p->queue] = push(queues[p->queue], p);
             p->cur_timeslices = 0;
             p->age_time = ticks;
@@ -702,7 +718,7 @@ kill(int pid)
       if(p->state == SLEEPING) {
         p->state = RUNNABLE;
         #if SCHEDULER == SCHED_MLFQ
-        // 8c60c451ba0933cf2b4c7e40967bfa38
+        // 
         queues[p->queue] = push(queues[p->queue], p);
         p->cur_timeslices = 0;
         p->age_time = ticks;
@@ -735,7 +751,7 @@ procdump(void)
   struct proc *p;
   char *state;
   // uint pc[10];
-  cprintf("PID\tPriority\tState\tr_time\tw_time\tn_run\tcur_q\tq0\tq1\tq2\tq3\tq4\n");  //  8c60c451ba0933cf2b4c7e40967bfa38
+  cprintf("PID\tPriority\tState\tr_time\tw_time\tn_run\tcur_q\tq0\tq1\tq2\tq3\tq4\n");  //  
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == UNUSED)
       continue;
@@ -743,8 +759,8 @@ procdump(void)
       state = states[p->state];
     else
       state = "???";
-      //  8c60c451ba0933cf2b4c7e40967bfa38
-    cprintf("%d\t%d\t\t%s\t%d\t%d\t%d\t%d", p->pid,p->priority, state, p->rtime, (p->etime - p->rtime - p->ctime), p->n_run, p->queue);
+      //  
+    cprintf("%d\t%d\t\t%s\t%d\t%d\t%d\t%d", p->pid,p->priority, state, p->rtime, ticks - p->age_time, p->n_run, p->queue);
     for(int j=0;j<5;j++) {
       cprintf("\t%d", p->q[j]);
     }

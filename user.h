@@ -5,7 +5,7 @@ struct rtcdate;
 int fork(void);
 int exit(void) __attribute__((noreturn));
 int wait(void);
-int waitx(int*, int*); // 8c60c451ba0933cf2b4c7e40967bfa38
+int waitx(int*, int*); 
 int pipe(int*);
 int write(int, const void*, int);
 int read(int, void*, int);
@@ -24,8 +24,8 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int procdump(void); // 8c60c451ba0933cf2b4c7e40967bfa38
-int set_priority(int, int); // 8c60c451ba0933cf2b4c7e40967bfa38
+int procdump(void); 
+int set_priority(int, int); 
 
 // ulib.c
 int stat(const char*, struct stat*);

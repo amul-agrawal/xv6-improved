@@ -62,6 +62,7 @@ scheduler(void)
       continue;
     }
 
+    // p->wtime = 0;
     p->cur_timeslices++;
     p->n_run++;
 
@@ -83,13 +84,16 @@ scheduler(void)
       if (p->is_cpu_heavy) {
         if (p->queue != NUM_QUEUES-1) {
           p->queue++;
+          // cprintf("MLFQ: process: %d demoted to queue: %d at ticks: %d\n", p->pid, p->queue, ticks);
         }
       }
       p->cur_timeslices = 0;
       p->age_time = ticks;
+      p->wtime = 0;
       p->is_cpu_heavy = 0;
-      // queues[p->queue] = push(queues[p->queue], p);
+      queues[p->queue] = push(queues[p->queue], p);
     }
+    
 
     release(&ptable.lock);
   }

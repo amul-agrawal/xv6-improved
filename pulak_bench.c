@@ -1,5 +1,3 @@
-
-
 #include "types.h"
 #include "user.h"
 
@@ -15,12 +13,12 @@ int main(int argc, char *argv[]) {
         }
         if (pid == 0) {
             int total = 0;
-            if (pNo % 4 == 0) {
-                // CPU
-                for (int i = 0; i < 1e9; i++) {
-                    total += i;
-                }
-            }
+            // if (pNo % 4 == 0) {
+            //     // CPU
+            //     for (int i = 0; i < 1e9; i++) {
+            //         total += i;
+            //     }
+            // }
             if (pNo % 4 == 1) {
                 // IO
                 for(int i = 0; i < 10; i++){
@@ -28,26 +26,26 @@ int main(int argc, char *argv[]) {
                     total += i;
                 }
             }
-            if (pNo % 4 == 2) {
-                // IO then CPU
-                sleep(500);
-                for(int i = 0; i < 5; i++){
-                    total += i;
-                    for(int j = 0; j < 1e8; j++){
-                        total += j;
-                    }
-                }
-            }
-            if (pNo % 4 == 3) {
-                // CPU then IO
-                for(int i = 0; i < 5; i++){
-                    total += i;
-                    for(int j = 0; j < 1e8; j++){
-                        total += j;
-                    }
-                }
-                sleep(500);
-            }
+            // if (pNo % 4 == 2) {
+            //     // IO then CPU
+            //     sleep(500);
+            //     for(int i = 0; i < 5; i++){
+            //         total += i;
+            //         for(int j = 0; j < 1e8; j++){
+            //             total += j;
+            //         }
+            //     }
+            // }
+            // if (pNo % 4 == 3) {
+            //     // CPU then IO
+            //     for(int i = 0; i < 5; i++){
+            //         total += i;
+            //         for(int j = 0; j < 1e8; j++){
+            //             total += j;
+            //         }
+            //     }
+            //     sleep(500);
+            // }
             printf(1, "Benchmark: %d Exited, Category : %d, Total : %d\n", pNo, pNo % 4, total);
             exit();
         } else {

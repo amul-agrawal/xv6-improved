@@ -1,4 +1,4 @@
-// 8c60c451ba0933cf2b4c7e40967bfa38
+
 
 #include "types.h"
 #include "defs.h"
@@ -89,9 +89,11 @@ void moveup(struct node** down, struct node** up, int threshold) {
 
     int count = 0;
 
-    while (cur != 0 && (ticks - cur->p->age_time > threshold) ) {
+    while (cur != 0 && ( cur->p->wtime > threshold) ) {
+        // cprintf("MLFQ: process: %d promoted to queue: %d at ticks: %d\n", cur->p->pid, cur->p->queue-1, ticks);
         cur->p->queue--;
         cur->p->age_time = ticks;
+        cur->p->wtime = 0;
         count++;
         prev = cur;
         cur = cur->next;

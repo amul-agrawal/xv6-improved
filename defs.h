@@ -111,21 +111,22 @@ int             kill(int);
 struct cpu*     mycpu(void);
 struct proc*    myproc();
 void            pinit(void);
-int             procdump(void); // 8c60c451ba0933cf2b4c7e40967bfa38
+int             procdump(void); // 
 void            scheduler(void) __attribute__((noreturn));
 void            sched(void);
 void            setproc(struct proc*);
 void            sleep(void*, struct spinlock*);
 void            userinit(void);
 int             wait(void);
-int             waitx(int*, int*); // 8c60c451ba0933cf2b4c7e40967bfa38
-void            inc_runtime(void);  // 8c60c451ba0933cf2b4c7e40967bfa38
+int             waitx(int*, int*); // 
+void            inc_wtime();
+void            inc_rtime(void);  // 
 void            wakeup(void*);
 void            yield(void);
-int             set_priority(int,int); // 8c60c451ba0933cf2b4c7e40967bfa38
-void            set_cpu_heavy(); // 8c60c451ba0933cf2b4c7e40967bfa38
-void            inc_q_ticks(); // 8c60c451ba0933cf2b4c7e40967bfa38
-void            inc_timeslice(); //8c60c451ba0933cf2b4c7e40967bfa38
+int             set_priority(int,int); // 
+void            set_cpu_heavy(); // 
+void            inc_q_ticks(); // 
+void            inc_timeslice(); //
 // int            procdump(void); // 
 
 // swtch.S
