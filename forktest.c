@@ -21,11 +21,18 @@ forktest(void)
   printf(1, "fork test\n");
 
   for(n=0; n<N; n++){
+    // printf(1, "in forktest before fork() \n");
     pid = fork();
+    // printf(1, "in forktest after fork() \n");
     if(pid < 0)
       break;
-    if(pid == 0)
+    if(pid == 0) {
+      // printf(1, "in forktest after fork() child \n");
       exit();
+    }
+    else if(pid>0) {
+      // printf(1, "in forktest after fork() parent\n");
+    }
   }
 
   if(n == N){

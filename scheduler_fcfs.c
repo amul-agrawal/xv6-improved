@@ -46,21 +46,19 @@ scheduler(void)
       sti();
       // Loop over process table looking for the process with earliest creation time to run
       int min_time = ticks + 2; 
-      struct proc* selected_proc = 0;
+      struct proc* picked_process = 0;
 
       acquire(&ptable.lock);
       for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
-        if (p->state != RUNNABLE) {
-          continue;
-        }
-
-        if (p->ctime < min_time) {
-          min_time = p->ctime;
-          selected_proc = p;
+        if (p->state == RUNNABLE) {
+          if (p->ctime < min_time) {
+            min_time = p->ctime;
+            picked_process = p;
+          }
         }
       }
 
-      if (selected_proc == 0) {
+      if (picked_process == 0) {
         release(&ptable.lock);
         continue;
       }
@@ -69,12 +67,12 @@ scheduler(void)
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
-      c->proc = selected_proc;
-      selected_proc->n_run++;
-      switchuvm(selected_proc);
-      selected_proc->state = RUNNING;
+      c->proc = picked_process;
+      picked_process->n_run++;
+      switchuvm(picked_process);
+      picked_process->state = RUNNING;
 
-      swtch(&(c->scheduler), selected_proc->context);
+      swtch(&(c->scheduler), picked_process->context);
       switchkvm();
 
       // Process is done running for now.

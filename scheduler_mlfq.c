@@ -57,7 +57,7 @@ scheduler(void)
       }
     }
 
-    if (p == 0 || p->state != RUNNABLE) {
+    if (p == 0 ||  p->killed == 1 || p->state != RUNNABLE) {
       release(&ptable.lock);
       continue;
     }
@@ -88,7 +88,7 @@ scheduler(void)
       p->cur_timeslices = 0;
       p->age_time = ticks;
       p->is_cpu_heavy = 0;
-      queues[p->queue] = push(queues[p->queue], p);
+      // queues[p->queue] = push(queues[p->queue], p);
     }
 
     release(&ptable.lock);

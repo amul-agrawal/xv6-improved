@@ -40,27 +40,27 @@ int size(struct node* head) {
 void initialize_found_node(struct node* this, struct proc* p)  {
     this->p = p;
     this->next = 0;
-    this->use = 0;
+    // this->use = 0;
 }
 
 struct node* push(struct node* head, struct proc* p) {
     struct node* found_node = find_node();
 
-    if(!found_node) return 0;
+    // if(!found_node) return 0;
     
     initialize_found_node(found_node, p);
 
     // this is the head.
     if (head == 0) {
         return found_node;
+    } else {
+        struct node* cur = head;
+        for(; cur->next!=0; cur = cur->next) ;
+
+        cur->next = found_node;
+        return head;
     }
 
-    struct node* cur = head;
-    while (cur->next != 0) {
-        cur = cur->next;
-    }
-    cur->next = found_node;
-    return head;
 }
 
 struct node* pop(struct node* head) {
@@ -91,7 +91,7 @@ void moveup(struct node** down, struct node** up, int threshold) {
 
     while (cur != 0 && (ticks - cur->p->age_time > threshold) ) {
         cur->p->queue--;
-        cur->p->cur_timeslices = ticks;
+        cur->p->age_time = ticks;
         count++;
         prev = cur;
         cur = cur->next;
@@ -101,7 +101,6 @@ void moveup(struct node** down, struct node** up, int threshold) {
     }
 
     prev->next = 0;
-    *down = cur;
 
     if (*up != 0) {
         struct node* up_end = *up;
@@ -110,6 +109,8 @@ void moveup(struct node** down, struct node** up, int threshold) {
     } else {
         *up = *down;
     }
+
+    *down = cur;
 
     return ;
 }

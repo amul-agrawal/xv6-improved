@@ -170,6 +170,12 @@ void inc_runtime() {
   release(&ptable.lock);
 }
 
+void inc_q_ticks() {
+    acquire(&ptable.lock);
+    myproc()->q[myproc()->queue]++;
+    release(&ptable.lock);
+}
+
 void set_cpu_heavy() {
     acquire(&ptable.lock);
     myproc()->is_cpu_heavy = 1;
@@ -182,11 +188,6 @@ void inc_timeslice() {
     release(&ptable.lock);
 }
 
-void inc_q_ticks() {
-    acquire(&ptable.lock);
-    myproc()->q[myproc()->queue]++;
-    release(&ptable.lock);
-}
 
 // 8c60c451ba0933cf2b4c7e40967bfa38
 int set_priority(int new_priority, int pid) {
@@ -329,7 +330,9 @@ fork(void)
   np->state = RUNNABLE;
 
   #if SCHEDULER == SCHED_MLFQ
+  // cprintf(" In fork() pid: %d\n", np->pid);
   queues[0] = push(queues[0], np); // 8c60c451ba0933cf2b4c7e40967bfa38
+  // cprintf(" Out fork() pid: %d\n", np->pid);
   #endif
 
   release(&ptable.lock);
@@ -572,6 +575,13 @@ sched(void)
     panic("sched running");
   if(readeflags()&FL_IF)
     panic("sched interruptible");
+  #if SCHEDULER == SCHED_MLFQ 
+  // cprintf("in sched pid: %d \n", myproc()->pid);
+  if(myproc()->state == RUNNABLE) {
+    queues[myproc()->queue] = push(queues[myproc()->queue], myproc());
+  }
+  // cprintf("out sched pid: %d \n", myproc()->pid);
+  #endif
   intena = mycpu()->intena;
   swtch(&p->context, mycpu()->scheduler);
   mycpu()->intena = intena;
